@@ -29,7 +29,8 @@ export default class RideScreen extends Component {
       hasCameraPermissions: null,
       scanned: false,
       bikeType: "",
-      userName: ""
+      userName: "",
+      email:firebase.auth.currentUser.email
     };
   }
 
@@ -164,10 +165,11 @@ export default class RideScreen extends Component {
     return transactionType;
   };
 
-  checkUserEligibilityForStartRide = async userId => {
+  checkUserEligibilityForStartRide = async (userId,email) => {
     const userRef = await db
       .collection("users")
       .where("id", "==", userId)
+      .where("email_id","==",email)
       .get();
 
     var isUserEligible = false;
@@ -193,7 +195,7 @@ export default class RideScreen extends Component {
 
     return isUserEligible;
   };
-
+//reto adicional
   checkUserEligibilityForEndRide = async (bikeId, userId) => {
     const transactionRef = await db
       .collection("transactions")

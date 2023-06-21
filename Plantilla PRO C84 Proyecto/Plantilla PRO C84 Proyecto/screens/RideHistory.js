@@ -23,9 +23,10 @@ export default class RideHistoryScreen extends Component {
   componentDidMount = async () => {
     this.getTransactions();
   };
-
-  getTransactions = () => {
+//reto adincional
+  getTransactions = email => {
     db.collection("transactions")
+    .where("email_id","==",email)
       .limit(10)
       .get()
       .then(snapshot => {

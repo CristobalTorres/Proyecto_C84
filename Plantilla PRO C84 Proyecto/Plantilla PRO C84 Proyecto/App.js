@@ -3,6 +3,7 @@ import { Rajdhani_600SemiBold } from "@expo-google-fonts/rajdhani";
 import * as Font from "expo-font";
 
 import BottomTabNavigator from "./components/BottomTabNavigator";
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
 
 export default class App extends Component {
   constructor() {
@@ -30,4 +31,16 @@ export default class App extends Component {
     }
     return null;
   }
+  
 }
+const AppSwitchNavigator = createSwitchNavigator(
+  {
+    Login: {screen:Login},
+    BottonTab:{screen:BottomTabNavigator}
+  },
+  {
+    initialRouteName:"login"
+  }
+);
+
+const AppContainer = createAppContainer(AppSwitchNavigator);
